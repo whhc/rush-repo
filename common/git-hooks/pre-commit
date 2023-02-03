@@ -1,0 +1,7 @@
+#!/bin/sh
+# 在 "git commit" 执行时，该钩子会被调用，并且没有参数。如果该钩子想要阻止提交，那么它应该以返回非零状态退出。
+
+# Invoke the "rush prettier" custom command to reformat files whenever they are commited.
+# The command is defined in common/config/rush/command-line.json
+# and uses the "rush-prettier" autoinstaller.
+node common/scripts/install-run-rush.js prettier || exit $?

@@ -1,15 +1,22 @@
-import { useEffect } from 'react';
-import './App.css';
-// import { getGistData } from './api/gist.api'
+import { Suspense, lazy } from 'react';
+import { Link, Route, Routes } from 'react-router-dom';
+
+const Home = lazy(() => import('./views/home/Home'));
 
 function App() {
-  useEffect(() => {
-    // getGistData().then(res => {
-    //   console.log(res)
-    // })
-  });
-
-  return <div className="App"></div>;
+  return (
+    <div>
+      <nav className={''}>
+        <Link to="/home">Home</Link>
+      </nav>
+      <Suspense fallback={<div>Loading...</div>}>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </Suspense>
+    </div>
+  );
 }
 
 export default App;
